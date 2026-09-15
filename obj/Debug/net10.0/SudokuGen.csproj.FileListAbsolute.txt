@@ -1,0 +1,14 @@
+/home/alexey/Desktop/Projects/SudokuGen/bin/Debug/net10.0/SudokuGen
+/home/alexey/Desktop/Projects/SudokuGen/bin/Debug/net10.0/SudokuGen.deps.json
+/home/alexey/Desktop/Projects/SudokuGen/bin/Debug/net10.0/SudokuGen.runtimeconfig.json
+/home/alexey/Desktop/Projects/SudokuGen/bin/Debug/net10.0/SudokuGen.dll
+/home/alexey/Desktop/Projects/SudokuGen/bin/Debug/net10.0/SudokuGen.pdb
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/SudokuGen.GeneratedMSBuildEditorConfig.editorconfig
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/SudokuGen.AssemblyInfoInputs.cache
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/SudokuGen.AssemblyInfo.cs
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/SudokuGen.csproj.CoreCompileInputs.cache
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/SudokuGen.dll
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/refint/SudokuGen.dll
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/SudokuGen.pdb
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/SudokuGen.genruntimeconfig.cache
+/home/alexey/Desktop/Projects/SudokuGen/obj/Debug/net10.0/ref/SudokuGen.dll
