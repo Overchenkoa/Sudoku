@@ -1,5 +1,23 @@
 public static class SolutionVerifier
 {
+    public static bool CheckChange(int[,] board, int x, int y, int num)
+    {
+        Console.WriteLine("Клетка " + x + " " + y);
+        for(int c = 0; c < 9; c++)
+        {
+            if (board[c,x] == num) return false;
+            if (board[y,c] == num) return false;
+        }
+        int squareX = x / 3 * 3, squareY = y / 3 * 3;
+        for(int a = squareY; a < squareY + 3; a++)
+        {
+            for(int b = squareX; b < squareX + 3; b++)
+            {
+                if (board[a,b] == num) return false;
+            }
+        }
+        return true;
+    }
     public static bool IsFilledCorrectly(int[,] board)
     {
         bool result = true;
@@ -57,4 +75,5 @@ public static class SolutionVerifier
         nums.Clear();
         return true;
     }
+
 }

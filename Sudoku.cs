@@ -9,12 +9,14 @@ public class Sudoku
     public Sudoku()
     {
         sudokuHider = new SudokuHider();
-        board = sudokuHider.HideNumbers(SudokuGenerator.Generate());
+        board = sudokuHider.HideNumbers(SudokuGenerator.Generate("99999999"));
+        
     }
 
     public void Solve()
     {
-        board = SudokuSolverDFS.SolveAsc(board);
+        SudokuSolverDFS sudokuSolverDFS = new SudokuSolverDFS();
+        board = sudokuSolverDFS.Solve(board);
     }
 
     #region Output

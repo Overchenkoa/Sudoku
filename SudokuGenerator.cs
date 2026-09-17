@@ -61,6 +61,8 @@ public class SudokuGenerator
                 case 4:
                     SwapAreaRows();
                 break;
+                case 9:
+                return board;
             }
         }
         return board;
