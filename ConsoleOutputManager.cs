@@ -1,6 +1,6 @@
 public class ConsoleOutputManager : OutputManager
 {
-    public override void OutputBoard(int[,] board)
+    public override void OutputBoard(Board board)
     {
         for(int y = 0; y<9; y++)
         {

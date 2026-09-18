@@ -1,10 +1,13 @@
 ﻿using System.Runtime.CompilerServices;
 
 ConsoleOutputManager consoleOutputManager = new ConsoleOutputManager();
-Sudoku sudoku = new Sudoku();
-sudoku.SetOutputManager(consoleOutputManager);
-sudoku.OutputBoard();
+GridMorphingGenerator gridMorphingGenerator = new GridMorphingGenerator();
+SudokuHider sudokuHider = new SudokuHider();
+SolverDFS solverDFS = new SolverDFS();
 
-sudoku.Solve();
+
+Sudoku sudoku = new Sudoku(consoleOutputManager, gridMorphingGenerator, sudokuHider, solverDFS);
+sudoku.OutputBoard();
+//sudoku.Solve();
 Console.WriteLine();
 sudoku.OutputBoard();

@@ -1,78 +1,68 @@
 public static class SolutionVerifier
 {
-    public static bool CheckChange(int[,] board, int x, int y, int num)
+    public static bool CheckChange(Board board, int x, int y, int num)
     {
-        Console.WriteLine("Клетка " + x + " " + y);
         for(int c = 0; c < 9; c++)
         {
-            if (board[c,x] == num) return false;
-            if (board[y,c] == num) return false;
+            if (board[x,c] == num) return false;
+            if (board[c,y] == num) return false;
         }
         int squareX = x / 3 * 3, squareY = y / 3 * 3;
-        for(int a = squareY; a < squareY + 3; a++)
+        for(int a = squareX; a < squareX + 3; a++)
         {
-            for(int b = squareX; b < squareX + 3; b++)
+            for(int b = squareY; b < squareY + 3; b++)
             {
                 if (board[a,b] == num) return false;
             }
         }
         return true;
     }
-    public static bool IsFilledCorrectly(int[,] board)
+    
+    public static bool IsFilledCorrectly(Board board)
     {
         bool result = true;
         int index = 0;
         while(index < 9 && result)
         {
-            result = CheckColumn(index, board) && CheckRow(index, board) && CheckSquare(index, board);
+            result = CheckColumn(index, board) && CheckRow(index, board) && CheckBox(index, board);
             index++;
         }
         return result;
     }
-    private static bool CheckSquare(int square, int[,] board)
+    private static bool CheckBox(int box, Board board)
     {
         List<int> nums = new List<int>();
-        int addX = square%3;
-        int addY = square/3;
-        for(int y = 0; y < 3; y++)
+        int[,] Box = board.GetBox(box);
+        for(int x = 0; x < 3; x++)
         {
-            for(int x = 0; x < 3; x++)
+            for(int y = 0; y < 3; y++)
             {
-                if (nums.Contains(board[addY*3+y,addX*3+x]) && board[addY*3+y,addX*3+x] != 0)
-                {
-                    return false;    
-                }
-                nums.Add(board[addY*3+y,addX*3+x]);
-            }
+                if (nums.Contains(Box[x,y]) && Box[x,y] != 0) return false;
+                else nums.Add(Box[x,y]);
+            }    
         }
         return true;
     }
-    private static bool CheckColumn(int x, int[,] board)
+    private static bool CheckColumn(int x, Board board)
     {
         List<int> nums = new List<int>();
-        for(int y = 0; y<0;y++)
+        int[] Column = board.GetColumn(x);
+        for(int i = 0; i < 0; i++)
         {
-            if (nums.Contains(board[y,x]) && board[y,x] != 0)
-            {
-                return false;    
-            }
-            nums.Add(board[y,x]);
+            if (nums.Contains(Column[i]) && Column[i] != 0) return false;
+            nums.Add(Column[i]);
         }
-        nums.Clear();
         return true;
     }
-    private static bool CheckRow(int y, int[,] board)
+    private static bool CheckRow(int y, Board board)
     {
         List<int> nums = new List<int>();
-        for(int x = 0; x<0;x++)
+        int[] Row = board.GetRow(y);
+        for(int i = 0; i < 0; i++)
         {
-            if (nums.Contains(board[y,x]) && board[y,x] != 0)
-            {
-                return false;    
-            }
-            nums.Add(board[y,x]);
+            if (nums.Contains(Row[i]) && Row[i] != 0) return false;    
+            nums.Add(Row[i]);
         }
-        nums.Clear();
         return true;
     }
 

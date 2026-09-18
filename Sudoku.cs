@@ -2,39 +2,38 @@
 
 public class Sudoku
 {
-    private int[,] board = new int[9,9];
-    private OutputManager? outputManager;
+    private Board board;
+    private OutputManager outputManager;
+    private BoardGenerator boardGenerator;
     private SudokuHider sudokuHider;
+    private SudokuSolver? sudokuSolver;
 
-    public Sudoku()
+    public Sudoku(OutputManager outputManager, BoardGenerator boardGenerator,
+    SudokuHider sudokuHider)
     {
-        sudokuHider = new SudokuHider();
-        board = sudokuHider.HideNumbers(SudokuGenerator.Generate("99999999"));
+        this.outputManager = outputManager ?? throw new ArgumentNullException(nameof(outputManager));
+        this.boardGenerator = boardGenerator ?? throw new ArgumentNullException(nameof(boardGenerator));
+        this.sudokuHider = sudokuHider ?? throw new ArgumentNullException(nameof(SudokuHider));
         
+        board = boardGenerator.Generate();
+        board = sudokuHider.HideNumbers(board);    
     }
-
+    public Sudoku(OutputManager outputManager, BoardGenerator boardGenerator,
+    SudokuHider sudokuHider, SudokuSolver sudokuSolver) : this(outputManager, boardGenerator, sudokuHider)
+    {
+        this.sudokuSolver = sudokuSolver ?? throw new ArgumentNullException(nameof(sudokuSolver));
+    }
+    
+    public void SetSolver(SudokuSolver solver)
+    {
+        sudokuSolver = solver ?? throw new ArgumentNullException(nameof(outputManager));
+    }
     public void Solve()
     {
-        SudokuSolverDFS sudokuSolverDFS = new SudokuSolverDFS();
-        board = sudokuSolverDFS.Solve(board);
-    }
-
-    #region Output
-    public void SetOutputManager(OutputManager manager)
-    {
-        outputManager = manager;
+        board = sudokuSolver.Solve(board);
     }
     public void OutputBoard()
     {
-        if (outputManager == null) throw new Exception("Output manager must be specified before use.");
         outputManager.OutputBoard(board);
     }
-    #endregion
-
-    #region Filled correctly
-
-    #endregion
- 
-
-    
 }

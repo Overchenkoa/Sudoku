@@ -1,26 +1,40 @@
-public class SudokuGenerator
+public class GridMorphingGenerator : BoardGenerator
 {
-    private static int[,] board = new int[9,9];
-
-    #region Generation
-    public static string GenerateSeed()
+    public override string GenerateSeed()
     {
-        return "";
+        string seed = "";
+        Random random = new Random();
+        for(int i = 0; i<10; i++)
+        {
+            int r = random.Next(5);
+            seed+=r;
+        }
+        return seed;
     }
-    public static int[,] Generate(string seed)
+    private Board GenerateBasic()
     {
-        return GenerateFromSeed(seed);
+        int[,] basicBoard = new int[9,9];
+        for(int x = 0; x<9;x++)
+        {
+            for(int y = 0; y<9;y++)
+            {
+                if(x/3 == 0)    basicBoard[x,y] = (1+y+x*3)%9;
+                else    basicBoard[x,y] = (basicBoard[x%3,y]+x/3)%9;
+                if(basicBoard[x,y] == 0) basicBoard[x,y] = 9;
+            }
+        }
+        return new Board(basicBoard);
     }
-    public static int[,] Generate()
+    public override Board Generate()
     {
-        string seed = GenerateSeed();
-        return GenerateFromSeed(seed);
+        seed = GenerateSeed();
+        return Generate(seed);
     }
-    
-    private static int[,] GenerateFromSeed(string seed)
+    public override Board Generate(string seed)
     {
+        board = GenerateBasic();
         int method, parameter;
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < seed.Length/2; i++)
         {
             method = Convert.ToInt32(seed[i*2].ToString());
             parameter = Convert.ToInt32(seed[i*2+1].ToString());
@@ -47,10 +61,9 @@ public class SudokuGenerator
         }
         return board;
     }
-    #endregion
     
     #region Swaps
-    private static void SwapRows(int area)
+    private void SwapRows(int area)
     {
         int buffer;
         for(int x = 0; x < 9; x++)
@@ -61,7 +74,7 @@ public class SudokuGenerator
             board[area*3+2,x] = buffer;
         }
     }
-    private static void SwapColumns(int area)
+    private void SwapColumns(int area)
     {
         int buffer;
         for(int y = 0; y < 9; y++)
@@ -72,7 +85,7 @@ public class SudokuGenerator
             board[y,area*3+2] = buffer;
         }
     }
-    private static void Transposition()
+    private void Transposition()
     {
         int buffer;
         for(int y = 0; y < 9; y++)
@@ -85,7 +98,7 @@ public class SudokuGenerator
             }   
         }
     }
-    private static void SwapAreaRows()
+    private void SwapAreaRows()
     {
         int buffer;
         for (int y = 0; y < 3; y++){
@@ -98,7 +111,7 @@ public class SudokuGenerator
             }
         }
     }
-    private static void SwapAreaColumns()
+    private void SwapAreaColumns()
     {
         int buffer;
         for (int x = 0; x < 3; x++){

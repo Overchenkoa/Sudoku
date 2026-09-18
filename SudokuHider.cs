@@ -1,28 +1,30 @@
 using System.Linq;
 public class SudokuHider
 {
-    int[,] tempBoard = new int[9,9];
+    private Board tempBoard;
     
-    public int[,] HideNumbers(int[,] board)
+    public Board HideNumbers(Board board)
     {
         Random random = new Random();
-        int operations = 20;
-        bool hasOneSolution = false;
+        int operations = 61;
         for(int i = 0; i < operations; i++)
         {
-            hasOneSolution = false;
-            while(!hasOneSolution)
+            while(true)
             {
                 tempBoard = board;
                 int x = random.Next(9),y = random.Next(9);
-                if (tempBoard[y,x] == 0) continue;
-                else tempBoard[y,x] = 0;
-                //SudokuSolverDFS.hasOneSolution((int[,])tempBoard.Clone());
-                Console.WriteLine(i + "/" + operations);
-                hasOneSolution = true;
+                if (tempBoard[x,y] == 0) continue;
+                else tempBoard[x,y] = 0;
+                if(i <= 2) break;
+                if (HasOneSolution(tempBoard)) break;
             }
             board = tempBoard;
         }
         return board;
+    }
+    private bool HasOneSolution(Board board)
+    {
+        SolverDFS solver = new SolverDFS();
+        return solver.HasOnlySolution(board.Copy());
     }
 }

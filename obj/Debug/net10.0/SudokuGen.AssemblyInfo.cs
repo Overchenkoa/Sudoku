@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SudokuGen")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37b58e16a5b60cd2ed9c4660f92cd061a6558382")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19564f177f3f9c8bfed6a353ae13c076f1e570a5")]
 [assembly: System.Reflection.AssemblyProductAttribute("SudokuGen")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SudokuGen")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
